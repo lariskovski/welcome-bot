@@ -14,19 +14,20 @@ with open('./welcome-message.md', 'r') as file:
 
 @client.event
 async def on_ready():
-    print(f'{client.user.name} ta ON!')
+    print(f'{client.user.name} beep bop!')
 
 
 @client.event
 async def on_member_join(member):
 
-    joined_user_dm = member.dm_channel
+    new_member_dm = member.dm_channel
 
-    if joined_user_dm is None:
+    if new_member_dm is None:
         await member.create_dm()
-        joined_user_dm = member.dm_channel
+        new_member_dm = member.dm_channel
     try:
-        await member.send(welcome_message_data)
+        await member.send(welcome_message_data
+                          .format(new_member_name=member.name))
     except Exception as e:
         print(e)
 
