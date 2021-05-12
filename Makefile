@@ -7,6 +7,9 @@ endif
 all: run
 	@echo "All good."
 
+local:
+	pip3 install -r requirements.txt ; cd src ; python3 main.py
+
 build:
 	@docker build -t ${IMAGE_NAME} .
 
